@@ -38,7 +38,7 @@ jobs:
       - name: Make Directory for results
         run: mkdir -p reports
 
-      - name: Run the API and Postman's tests.
+      - name: Run the API and Postman's tests
         run: npm run testsPositiveScenarios
 
       - name: save new result
