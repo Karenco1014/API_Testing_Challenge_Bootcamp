@@ -31,7 +31,7 @@ jobs:
 
         # Runs a set of commands using the runners shell
       - name: Install Newman dependency
-        run: npm install -g newman
+        run: npm i newman
           npm i newman-reporter-htmlextra
 
         # Make directory to upload the test results
