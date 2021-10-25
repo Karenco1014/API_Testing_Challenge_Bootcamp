@@ -1,0 +1,1062 @@
+{
+	"info": {
+		"_postman_id": "a7e204cc-734d-4f67-9a42-b829984a655b",
+		"name": "Todoist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get all projects",
+					"item": [
+						{
+							"name": "Get all projects",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"var schema = {",
+											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"array\",",
+											"  \"items\": [",
+											"    {",
+											"      \"type\": \"object\",",
+											"      \"properties\": {",
+											"        \"id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"color\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"comment_count\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"shared\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"favorite\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"sync_id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"inbox_project\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"url\": {",
+											"          \"type\": \"string\"",
+											"        }",
+											"      },",
+											"      \"required\": [",
+											"        \"id\",",
+											"        \"color\",",
+											"        \"name\",",
+											"        \"comment_count\",",
+											"        \"shared\",",
+											"        \"favorite\",",
+											"        \"sync_id\",",
+											"        \"inbox_project\",",
+											"        \"url\"",
+											"      ]",
+											"    },",
+											"    {",
+											"      \"type\": \"object\",",
+											"      \"properties\": {",
+											"        \"id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"order\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"color\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"comment_count\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"shared\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"favorite\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"sync_id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"url\": {",
+											"          \"type\": \"string\"",
+											"        }",
+											"      },",
+											"      \"required\": [",
+											"        \"id\",",
+											"        \"order\",",
+											"        \"color\",",
+											"        \"name\",",
+											"        \"comment_count\",",
+											"        \"shared\",",
+											"        \"favorite\",",
+											"        \"sync_id\",",
+											"        \"url\"",
+											"      ]",
+											"    },",
+											"    {",
+											"      \"type\": \"object\",",
+											"      \"properties\": {",
+											"        \"id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"order\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"color\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"comment_count\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"shared\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"favorite\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"sync_id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"url\": {",
+											"          \"type\": \"string\"",
+											"        }",
+											"      },",
+											"      \"required\": [",
+											"        \"id\",",
+											"        \"order\",",
+											"        \"color\",",
+											"        \"name\",",
+											"        \"comment_count\",",
+											"        \"shared\",",
+											"        \"favorite\",",
+											"        \"sync_id\",",
+											"        \"url\"",
+											"      ]",
+											"    }",
+											"  ]",
+											"}",
+											"",
+											"pm.test('schema validation', function() {",
+											"",
+											"    var result=tv4.validateResult(pm.response.json(), schema)",
+											"",
+											"    if (!result.valid){",
+											"        console.log(result);",
+											"    }",
+											"    pm.expect(result.valid).to.be.true;",
+											"})",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}projects",
+									"host": [
+										"{{baseURL}}projects"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create a new project",
+					"item": [
+						{
+							"name": "Create a new project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"The project was created as Project as backlog.\", function() {",
+											"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"nameProject\"));",
+											"",
+											"});",
+											"pm.environment.unset(\"nameProject\")",
+											"",
+											"",
+											"pm.test(\"The name field comes as a string\", () => {",
+											"  pm.expect(jsonData.name).to.be.a(\"string\");",
+											"});",
+											"",
+											"const jsonProject = pm.response.json();",
+											"pm.environment.set(\"ProjectId\", jsonData.id);",
+											"",
+											"",
+											"var schema = {",
+											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"name\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"name\"",
+											"  ]",
+											"}",
+											"",
+											"pm.test('Schema is valid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"nameProject\", \"Project other\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{nameProject}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects",
+									"host": [
+										"{{baseURL}}projects"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get a project",
+					"item": [
+						{
+							"name": "Get a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"const jsonData = pm.response.json();",
+											"pm.test(\"The project id is correct\", function() {",
+											"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"ProjectId\"));",
+											"",
+											"});",
+											"",
+											"var schema = {",
+											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"name\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"name\"",
+											"  ]",
+											"}",
+											"",
+											"pm.test('Schema is valid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseURL}}projects/{{ProjectId}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{ProjectId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update a project",
+					"item": [
+						{
+							"name": "Update a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{nameUpdateProject}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects/{{ProjectId}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{ProjectId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete a project",
+					"item": [
+						{
+							"name": "Delete a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"",
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}projects/{{ProjectId}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{ProjectId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 2xx\", function () {",
+							"    pm.response.to.be.success;",
+							"});",
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get active tasks",
+					"item": [
+						{
+							"name": "Get active tasks",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"var schema ={",
+											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"array\",",
+											"  \"items\": [",
+											"    {",
+											"      \"type\": \"object\",",
+											"      \"properties\": {",
+											"        \"id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"assigner\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"project_id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"section_id\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"order\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"content\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"description\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"completed\": {",
+											"          \"type\": \"boolean\"",
+											"        },",
+											"        \"label_ids\": {",
+											"          \"type\": \"array\",",
+											"          \"items\": {}",
+											"        },",
+											"        \"priority\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"comment_count\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"creator\": {",
+											"          \"type\": \"integer\"",
+											"        },",
+											"        \"created\": {",
+											"          \"type\": \"string\"",
+											"        },",
+											"        \"url\": {",
+											"          \"type\": \"string\"",
+											"        }",
+											"      },",
+											"      \"required\": [",
+											"        \"id\",",
+											"        \"assigner\",",
+											"        \"project_id\",",
+											"        \"section_id\",",
+											"        \"order\",",
+											"        \"content\",",
+											"        \"description\",",
+											"        \"completed\",",
+											"        \"label_ids\",",
+											"        \"priority\",",
+											"        \"comment_count\",",
+											"        \"creator\",",
+											"        \"created\",",
+											"        \"url\"",
+											"      ]",
+											"    }",
+											"  ]",
+											"}",
+											"pm.test('schema validation', function() {",
+											"",
+											"    var result=tv4.validateResult(pm.response.json(), schema)",
+											"",
+											"    if (!result.valid){",
+											"        console.log(result);",
+											"    }",
+											"    pm.expect(result.valid).to.be.true;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}tasks",
+									"host": [
+										"{{baseURL}}tasks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create a new task",
+					"item": [
+						{
+							"name": "Create a new task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"The task was created with the name Perform the challenge\", function() {",
+											"    pm.expect(jsonData.content).to.eql(pm.environment.get(\"nameTask\"));",
+											"",
+											"});",
+											"pm.environment.unset(\"nameTask\")",
+											"",
+											"pm.test(\"The content field comes as a string\", () => {",
+											"  pm.expect(jsonData.content).to.be.a(\"string\");",
+											"});",
+											"",
+											"const jsonTask = pm.response.json();",
+											"pm.environment.set(\"TaskId\", jsonData.id);",
+											"",
+											"var schema = {",
+											" \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"project_id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"content\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"description\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"project_id\",",
+											"    \"content\",",
+											"    \"description\"",
+											"  ]",
+											"}",
+											"",
+											"pm.test('Schema is valid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"nameTask\", \"task other\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n    {\n        \"content\": \"{{nameTask}}\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks",
+									"host": [
+										"{{baseURL}}tasks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get an active task",
+					"item": [
+						{
+							"name": "Get an active task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"",
+											"const jsonData = pm.response.json();",
+											"pm.test(\"The task id is correct\", function() {",
+											"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"TaskId\"));",
+											"",
+											"});",
+											"",
+											"",
+											"var schema = {",
+											" \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"project_id\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"content\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"description\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"project_id\",",
+											"    \"content\",",
+											"    \"description\"",
+											"  ]",
+											"}",
+											"",
+											"pm.test('Schema is valid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update a task",
+					"item": [
+						{
+							"name": "Update a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"{{nameUpdateTask}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Close a task",
+					"item": [
+						{
+							"name": "Close a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}/close",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}",
+										"close"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reopen a task",
+					"item": [
+						{
+							"name": "Reopen a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}/reopen",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}",
+										"reopen"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete a task",
+					"item": [
+						{
+							"name": "Delete a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"response should be empty\", function () {",
+											"    pm.response.to.not.be.withBody;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 2xx\", function () {",
+							"    pm.response.to.be.success;",
+							"});",
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{Authorization}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 500ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(500);",
+					"});",
+					"",
+					"",
+					""
+				]
+			}
+		}
+	]
+}

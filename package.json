@@ -1,0 +1,16 @@
+{
+  "name": "api_testing_challenge_bootcamp",
+  "version": "1.0.0",
+  "description": "backend pastman automation",
+  "main": "index.js",
+  "scripts": {
+    "testsPositiveScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Positive_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json' -r htmlextra --reporter-htmlextra-export './Todoist/Tests/Backend /Reports'/reporte.html",
+    "testsNegativeScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Negative_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json' -r htmlextra --reporter-htmlextra-export './Todoist/Tests/Backend /Reports'/reporte.html"
+  },
+  "author": "Karen Correa",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^5.3.0",
+    "newman-reporter-htmlextra": "^1.22.2"
+  }
+}
