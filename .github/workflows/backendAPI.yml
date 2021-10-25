@@ -31,8 +31,8 @@ jobs:
 
         # Runs a set of commands using the runners shell
       - name: Install Newman dependency
-        run:npm install -g newman
-            npm install -g newman-reporter-htmlextra
+        run: npm install -g newman
+          npm install -g newman-reporter-htmlextra
 
         # Make directory to upload the test results
       - name: Make Directory for results
@@ -44,5 +44,5 @@ jobs:
       - name: save new result
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact.
+          name: my-artifact
           path: reports
