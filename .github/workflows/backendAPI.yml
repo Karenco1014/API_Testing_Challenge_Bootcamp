@@ -44,5 +44,5 @@ jobs:
       - name: save new result
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
+          name: my-artifact.
           path: reports
