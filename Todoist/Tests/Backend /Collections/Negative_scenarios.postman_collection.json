@@ -13,287 +13,266 @@
 					"item": [
 						{
 							"name": "Get all projects",
-							"item": [
+							"event": [
 								{
-									"name": "Get all projects",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"",
-													"const jsonData = pm.response.json();",
-													"var schema = {",
-													"  \"type\": \"object\",",
-													"  \"properties\": {",
-													"    \"id\": {",
-													"      \"type\": \"string\"",
-													"    },",
-													"    \"name\": {",
-													"      \"type\": \"string\"",
-													"    }",
-													"  },",
-													"  \"required\": [",
-													"    \"id\",",
-													"    \"name\"",
-													"  ]",
-													"}",
-													"",
-													"",
-													"pm.test('Schema is invalid', function () {",
-													"    pm.expect(tv4.validate(jsonData, schema)).to.be.false;",
-													"});",
-													"",
-													"",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}projects",
-											"host": [
-												"{{baseURL}}projects"
-											]
-										}
-									},
-									"response": []
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"const jsonData = pm.response.json();",
+											"var schema = {",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"name\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"name\"",
+											"  ]",
+											"}",
+											"",
+											"",
+											"pm.test('Schema is invalid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.false;",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects",
+									"host": [
+										"{{baseURL}}projects"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Create a new project",
-							"item": [
+							"event": [
 								{
-									"name": "Create a new project",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with no name required', function() {",
-													"  pm.expect(pm.response.text()).contains('Name must be provided for the project creation')",
-													"  ",
-													"});",
-													""
-												],
-												"type": "text/javascript"
-											}
-										},
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													"{",
-													"}"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"name\":\"\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}projects/",
-											"host": [
-												"{{baseURL}}projects"
-											],
-											"path": [
-												""
-											]
-										}
-									},
-									"response": []
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test('message validation with no name required', function() {",
+											"  pm.expect(pm.response.text()).contains('Name must be provided for the project creation')",
+											"  ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"{",
+											"}"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects/",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Get a project",
-							"item": [
+							"event": [
 								{
-									"name": "Get a project",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('Not found')",
-													"  ",
-													"});",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('Not found')",
+											"  ",
+											"});",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
-											"host": [
-												"{{baseURL}}projects"
-											],
-											"path": [
-												"{{idProjectInvalid}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{idProjectInvalid}}"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Update a project",
-							"item": [
+							"event": [
 								{
-									"name": "Update a project",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('At least one of name, color or favorite fields should be set')",
-													"  ",
-													"});",
-													"",
-													"",
-													"pm.test(\"Status code is 400\", function () {",
-													"    pm.response.to.have.status(400);",
-													"});",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('At least one of name, color or favorite fields should be set')",
+											"  ",
+											"});",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
-											"host": [
-												"{{baseURL}}projects"
-											],
-											"path": [
-												"{{idProjectInvalid}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{idProjectInvalid}}"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Delete a project",
-							"item": [
+							"event": [
 								{
-									"name": "Delete a project",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"",
-													"pm.test(\"Status code is 400\", function () {",
-													"    pm.response.to.have.status(400);",
-													"});",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('At least one of name, color or favorite fields should be set')",
+											"  ",
+											"});",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
-											"host": [
-												"{{baseURL}}projects"
-											],
-											"path": [
-												"{{idProjectInvalid}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}projects/{{idProjectInvalid}}",
+									"host": [
+										"{{baseURL}}projects"
+									],
+									"path": [
+										"{{idProjectInvalid}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -302,385 +281,368 @@
 					"item": [
 						{
 							"name": "Get active tasks",
-							"item": [
+							"event": [
 								{
-									"name": "Get active tasks",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"const jsonData = pm.response.json();",
-													"var schema = {",
-													" \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
-													"  \"type\": \"object\",",
-													"  \"properties\": {",
-													"    \"id\": {",
-													"      \"type\": \"string\"",
-													"    },",
-													"    \"project_id\": {",
-													"      \"type\": \"string\"",
-													"    },",
-													"    \"content\": {",
-													"      \"type\": \"string\"",
-													"    },",
-													"    \"description\": {",
-													"      \"type\": \"string\"",
-													"    }",
-													"  },",
-													"  \"required\": [",
-													"    \"id\",",
-													"    \"project_id\",",
-													"    \"content\",",
-													"    \"description\"",
-													"  ]",
-													"}",
-													"",
-													"pm.test('Schema is invalid', function () {",
-													"    pm.expect(tv4.validate(jsonData, schema)).to.be.false;",
-													"});",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"const jsonData = pm.response.json();",
+											"var schema = {",
+											" \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"id\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"project_id\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"content\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"description\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"id\",",
+											"    \"project_id\",",
+											"    \"content\",",
+											"    \"description\"",
+											"  ]",
+											"}",
+											"",
+											"pm.test('Schema is invalid', function () {",
+											"    pm.expect(tv4.validate(jsonData, schema)).to.be.false;",
+											"});",
+											"",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks",
-											"host": [
-												"{{baseURL}}tasks"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks",
+									"host": [
+										"{{baseURL}}tasks"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Create a new task",
-							"item": [
+							"event": [
 								{
-									"name": "Create a new task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('Empty content')",
-													"  ",
-													"});",
-													"",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('Empty content')",
+											"  ",
+											"});",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "\n    {\n        \"id\": \"{{idtaskinvalid}}\"\n    }",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks",
-											"host": [
-												"{{baseURL}}tasks"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n    {\n        \"id\": \"{{idtaskinvalid}}\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks",
+									"host": [
+										"{{baseURL}}tasks"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Get an active task",
-							"item": [
+							"event": [
 								{
-									"name": "Get an active task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('Not Found')",
-													"  ",
-													"});",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('Not Found')",
+											"  ",
+											"});",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks/{{idtaskinvalid}}",
-											"host": [
-												"{{baseURL}}tasks"
-											],
-											"path": [
-												"{{idtaskinvalid}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks/{{idtaskinvalid}}",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{idtaskinvalid}}"
+									]
+								}
+							},
+							"response": []
 						},
 						{
 							"name": "Update a task",
-							"item": [
+							"event": [
 								{
-									"name": "Update a task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"",
-													"pm.test(\"Status code is 400\", function () {",
-													"    pm.response.to.have.status(400);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"content\": {{idtaskinvalid}}\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks/{{TaskId}}",
-											"host": [
-												"{{baseURL}}tasks"
-											],
-											"path": [
-												"{{TaskId}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": {{idtaskinvalid}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks/{{TaskId}}",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{TaskId}}"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"name": "Close a task Copy",
-							"item": [
+							"name": "Close a task",
+							"event": [
 								{
-									"name": "Close a task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('JSON decode error: unexpected string at pos 18')",
-													"  ",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('Internal Server Error')",
+											"});",
+											"",
+											"pm.test(\"Status code is 500\", function () {",
+											"    pm.response.to.have.status(500);",
+											"});",
+											""
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks/{{idtaskinvalid}}/close",
-											"host": [
-												"{{baseURL}}tasks"
-											],
-											"path": [
-												"{{idtaskinvalid}}",
-												"close"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks/{{idtaskinvalid}}/close",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"{{idtaskinvalid}}",
+										"close"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"name": "Reopen a task Copy",
-							"item": [
+							"name": "Reopen a task",
+							"event": [
 								{
-									"name": "Reopen a task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test(\"Status code is 405\", function () {",
-													"    pm.response.to.have.status(405);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks//{{idtaskinvalid}}/reopen",
-											"host": [
-												"{{baseURL}}tasks"
-											],
-											"path": [
-												"",
-												"{{idtaskinvalid}}",
-												"reopen"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks//{{idtaskinvalid}}/reopen",
+									"host": [
+										"{{baseURL}}tasks"
+									],
+									"path": [
+										"",
+										"{{idtaskinvalid}}",
+										"reopen"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"name": "Delete a task Copy",
-							"item": [
+							"name": "Delete a task",
+							"event": [
 								{
-									"name": "Delete a task",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"pm.test('message validation with id wrong', function() {",
-													"  pm.expect(pm.response.text()).contains('404 page not found')",
-													"  ",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "{{Authorization}}",
-												"type": "text"
-											}
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('message validation with id wrong', function() {",
+											"  pm.expect(pm.response.text()).contains('404 page not found')",
+											"  ",
+											"});"
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseURL}}tasks{{idtaskinvalid}}",
-											"host": [
-												"{{baseURL}}tasks{{idtaskinvalid}}"
-											]
-										}
-									},
-									"response": []
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{Authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"{{idtaskinvalid}}\" \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}tasks{{idtaskinvalid}}",
+									"host": [
+										"{{baseURL}}tasks{{idtaskinvalid}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}

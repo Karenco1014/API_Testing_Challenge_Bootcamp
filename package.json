@@ -4,8 +4,8 @@
   "description": "backend pastman automation",
   "main": "index.js",
   "scripts": {
-    "testsPositiveScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Positive_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json' -r htmlextra --reporter-htmlextra-export reports/htmlreport.html --reporter-htmlextra-darkTheme  > reports/reporte.html",
-    "testsNegativeScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Negative_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json' -r htmlextra --reporter-htmlextra-export './Todoist/Tests/Backend /reports'/reporte.html"
+    "testsPositiveScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Positive_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json'",
+    "testsNegativeScenarios": "npx newman run './Todoist/Tests/Backend /Collections/Negative_scenarios.postman_collection.json' -e './Todoist/Tests/Backend /EnvVariables /Todoist_Pro.postman_environment.json'"
   },
   "author": "Karen Correa",
   "license": "ISC",
