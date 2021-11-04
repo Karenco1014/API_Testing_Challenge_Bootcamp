@@ -38,7 +38,7 @@ jobs:
         run: mkdir -p reports
 
       - name: Run the API and Postman's tests
-        run: npm run testsPositiveScenarios
+        run: npm run testsNegativeScenarios
 
       - name: save new result
         uses: actions/upload-artifact@v2
